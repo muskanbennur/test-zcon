@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <style>
+    p{font-size: 16px;}
+    </style>
+   <p>
+    Total Gifts purchased by you : <%=gift.rowCount%>
+  </p>
+  <ul style="display:inline;">
+  <li><a href="/logout" >LOG OUT</a></li>
+</ul>
+</head>
+<body>
+
+    <div id="wrapper">
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                       <h1>Purchased Gifts </h1>
+
+                        <table>
+                         <% for(var i=0; i < gift.rowCount; i++) { %>
+                                
+                                  <tr>
+
+                                    <td><%=gift.rows[i].name%>  %></td>
+                                   </tr> 
+                       <% } %>
+                        </table>
+
+                      
+                    </div>
+              </div>
+
+              <div style="margin:20px">
+                <div class="row">
+                    <div class="col-lg-12">
+                    <h1>  Exciting Gifts to purchase fast </h1>
+                      <form method="post" action="/controllers/purchasegift-controller">
+                        <table>
+                          <th></th>
+                                  <th>Gifts </th>
+                                   <th>Amount</th>
+                                  <th>Purchase</th>
+
+                       <% for(var i=0; i < giftnotpurchased.rowCount; i++) { %>
+                                
+                                  <tr>
+                                     <td>
+                                      <input type="checkbox" name="giftid" value=<%=giftnotpurchased.rows[i].id %>> </td>
+                                    <td><%=giftnotpurchased.rows[i].name%>  %></td>
+                                     <td><%=giftnotpurchased.rows[i].amount%>  %></td>
+
+                                    <td><button type="submit" class="btn btn-primary">Purchase Gifts</button></td>
+                                   </tr> 
+                       <% } %>
+                        </table>
+
+                      </form>
+                    </div>
+              </div>
+          </div>
+      </div>
+    </div>   
+</body>
+</html>
